@@ -1,0 +1,22 @@
+<p>main works!</p>
+<div class="image-container">
+    <img [src]="imageUrl" alt="Image">
+    <div *ngFor="let comment of comments">
+      {{ comment }}
+    </div>
+    <div>
+      <button (click)="like()">Like</button>
+      Likes: {{ likes }}
+    </div>
+  </div>
+  <!-- src/app/login/login.component.html -->
+
+<!-- <div>
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="email" />
+  <br>
+  <label>Password:</label>
+  <input type="password" [(ngModel)]="password" />
+  <br>
+  <button (click)="login()">Login</button>
+</div> -->
