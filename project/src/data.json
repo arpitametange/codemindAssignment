@@ -85,6 +85,16 @@
         }
       ],
       "id": 7
+    },
+    {
+      "image": "blob:http://localhost:4200/9cfb33a8-8459-40c3-a3cd-9327b25feef3",
+      "comment": [
+        {
+          "text": "dsa",
+          "likes": 0
+        }
+      ],
+      "id": 8
     }
   ]
 }

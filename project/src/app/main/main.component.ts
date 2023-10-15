@@ -60,8 +60,7 @@ postimage:any
 
   click(a: any) {
     this.add = a;
-    // Assuming "add" is a form control, you can reset it like this
-    // this.add.reset();
+    
   }
 
   likeComment(comment: Comment) {

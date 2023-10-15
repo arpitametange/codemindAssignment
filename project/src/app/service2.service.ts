@@ -11,14 +11,7 @@ export class Service2Service {
   
   constructor(private http:HttpClient) { }
 
-  // createPost() : Observable<any> {
-  //   let postData = {
-  //     username: '',
-  //     password: ''
-  //   }
-  //  return this.http.post(this.url + 'posts.json', postData);
 
-  // }
 
   get(email:any,password:any){
    return this.http.get(this.url)
