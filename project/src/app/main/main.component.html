@@ -1,22 +1,33 @@
-<p>main works!</p>
-<div class="image-container">
-    <img [src]="imageUrl" alt="Image">
+<div class="container">
+
+  <mat-form-field  style="margin-left:50px;width:300px;">
+    
+  <input matInput placeholder="Say something..." [(ngModel)]="newComment">
+</mat-form-field>
+  <!-- Input for comments -->
+  <!-- <input [(ngModel)]="newComment" placeholder="Enter your comment" /> -->
+
+  <!-- Image upload input -->
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+
+  <!-- Post button -->
+  <button (click)="postComment()">Post</button>
+
+  <!-- Display the image -->
+ 
+  <img *ngIf="imageSrc" [src]="imageSrc" alt="Uploaded Image" />
+
+
+ 
+  <div class="comments">
     <div *ngFor="let comment of comments">
-      {{ comment }}
-    </div>
-    <div>
-      <button (click)="like()">Like</button>
-      Likes: {{ likes }}
+      <div> {{ comment.text }}</div>
+      <a (click)="likeComment(comment)"> <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> likes: {{comment.likes}} </a>
+      <mat-form-field class="example-full-width">
+        <input matInput #myclick placeholder="Enter your comment" />
+        {{add}}
+        <button (click)="click(myclick.value)">clickme</button>
+      </mat-form-field>
     </div>
   </div>
-  <!-- src/app/login/login.component.html -->
-
-<!-- <div>
-  <label>Email:</label>
-  <input type="email" [(ngModel)]="email" />
-  <br>
-  <label>Password:</label>
-  <input type="password" [(ngModel)]="password" />
-  <br>
-  <button (click)="login()">Login</button>
-</div> -->
+</div>

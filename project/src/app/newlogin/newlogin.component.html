@@ -1,0 +1,40 @@
+
+<div id="account" class="rounded shadow py-5">
+    
+    <form [formGroup]="createAccount">
+        <h2 style="margin-left:130px">Create Account</h2>
+        <div>
+
+        <mat-form-field appearance="outline" style="margin-left:50px ; width: 300px;">
+            <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="Enter your email" formControlName="email"  #email>
+          <mat-error *ngIf="createAccount.get('email')?.invalid && createAccount.get('email')?.touched">email is required</mat-error>
+        </mat-form-field>
+        </div>
+        <div>
+        <mat-form-field appearance="outline" style="margin-left:50px ; width: 300px;">
+            <mat-label>Enter your username</mat-label>
+          <input matInput type="text" placeholder="Enter your username" formControlName="username"  #username>
+          <mat-error *ngIf="createAccount.get('username')?.invalid && createAccount.get('username')?.touched">username is required</mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" style="margin-left:50px ; width: 300px;" >
+            <mat-label>Enter your password</mat-label>
+          <input matInput type="text" placeholder="Enter your password" formControlName="password">
+          <mat-error *ngIf="createAccount.get('password')?.invalid && createAccount.get('password')?.touched">Password is required</mat-error>
+        </mat-form-field>
+    </div>
+        <button  style="margin-left:130px"  mat-raised-button color="primary" type="submit" (click)="postdata(email.value,username.value)"  routerLink="/imagePostPage">Create account</button>
+      
+        <h3 style="margin-left:180px;margin-top: 20px;">OR</h3>
+
+        <a style="margin-left:175px"  routerLink="/login">Login</a>
+
+            
+      </form>
+    
+      
+      
+    </div>
+      

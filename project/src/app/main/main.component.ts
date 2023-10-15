@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-main',
@@ -6,30 +8,75 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  @Input() imageUrl: any;
-  @Input() comments!: string[];
+  newComment: string = '';
+  comments: Comment[] = [];
+  images: ImageWithComments[] = [];
+  imageSrc: string = '';
+  liked: boolean = false;
+  add: any;
 
-  @Input() likes: any;
-
-  like() {
-    this.likes++;
+postimage:any
+  postcomment:any
+  constructor(private servicedata: ServiceService, private http: HttpClient) {
+    this.get()
   }
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.imageSrc = URL.createObjectURL(file);
+    this.liked = false; // Reset the like status when a new image is uploaded.
 
-  email: string = '';
-  password: string = '';
+    // Store the current image along with its comments
+    this.images.push({ src: this.imageSrc, comments: this.comments });
 
-  // constructor(private afAuth: AngularFireAuth) { }
-
-  // login() {
-  //   this.afAuth.signInWithEmailAndPassword(this.email, this.password)
-  //     .then((userCredential) => {
-  //       // User is signed in, you can redirect or do further processing here.
-  //       console.log('User logged in:', userCredential.user);
-  //     })
-  //     .catch((error) => {
-  //       // Handle errors here.
-  //       console.error('Error:', error);
-  //     });
+    // Clear the comments for the new image
+    this.comments = [];
   }
+  get(){
+    this.servicedata.getdata().subscribe((res:any)=>{
+      console.log(res);
+      this.postcomment=res.comment
+      this.postimage=res.image
+    })
+  }
+
+  postComment() {
+    if (this.newComment) {
+      this.comments.push({ text: this.newComment, likes: 0 });
+      this.newComment = '';
+
+      const data = {
+        image: this.imageSrc,
+        comment:this.comments
+      };
+
+  
+      this.servicedata.postdata(data).subscribe((res:any) => {
+        console.log('Post data', res.comment);
+      
+      });
+    }
+  }
+
+  click(a: any) {
+    this.add = a;
+    // Assuming "add" is a form control, you can reset it like this
+    // this.add.reset();
+  }
+
+  likeComment(comment: Comment) {
+    comment.likes++;
+    this.liked = true;
+  }
+}
+
+interface Comment {
+  text: string;
+  likes: number;
+}
+
+interface ImageWithComments {
+  src: string;
+  comments: Comment[];
+}
 

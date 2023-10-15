@@ -1,5 +1,7 @@
-<div>
-  <app-image [imageUrl]="imageUrl" [comments]="comments" [likes]="likes"></app-image>
+
+<div id="nav">
+  <p id="text">SBook</p>
+  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
 </div>
-<!-- app.component.html -->
-<input type="file" (change)="onFileSelected($event)">
+
+<router-outlet></router-outlet>
