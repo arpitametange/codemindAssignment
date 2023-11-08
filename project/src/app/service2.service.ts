@@ -26,4 +26,8 @@ export class Service2Service {
     return this.http.post(this.url + 'posts.json',postdata)
   }
 
+
+
+
+  
 }
